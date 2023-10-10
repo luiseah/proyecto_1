@@ -1,4 +1,6 @@
 <?php
+
+namespace Uniqoders\MyPlugin\Http\Controllers;
 /**
  * REST API: BookController class
  *
@@ -14,9 +16,8 @@
  *
  * @see WP_REST_Controller
  */
-class BookController extends WP_REST_Controller
+class BookController
 {
-
     /**
      * Constructor.
      *
@@ -42,16 +43,16 @@ class BookController extends WP_REST_Controller
             '/' . $this->rest_base,
             [
                 [
-                    'methods' => WP_REST_Server::READABLE,
+                    'methods' => \WP_REST_Server::READABLE,
                     'callback' => [$this, 'index'],
 //                    'permission_callback' => [$this, 'authorize_request'],
-                    'args' => $this->get_collection_params(),
+//                    'args' => $this->get_collection_params(),
                 ],
                 [
-                    'methods' => WP_REST_Server::CREATABLE,
+                    'methods' => \WP_REST_Server::CREATABLE,
                     'callback' => [$this, 'store'],
 //                    'permission_callback' => [$this, 'authorize_request'],
-                    'args' => $this->get_endpoint_args_for_item_schema(WP_REST_Server::CREATABLE),
+//                    'args' => $this->get_endpoint_args_for_item_schema(\WP_REST_Server::CREATABLE),
                 ]
             ]
         );
@@ -68,21 +69,21 @@ class BookController extends WP_REST_Controller
                     ],
                 ],
                 [
-                    'methods' => WP_REST_Server::READABLE,
+                    'methods' => \WP_REST_Server::READABLE,
                     'callback' => [$this, 'show'],
 //                    'permission_callback' => [$this, 'authorize_request'],
                     'args' => [
-                        'context' => $this->get_context_param(['default' => 'view']),
+//                        'context' => $this->get_context_param(['default' => 'view']),
                     ],
                 ],
                 [
-                    'methods' => WP_REST_Server::EDITABLE,
+                    'methods' => \WP_REST_Server::EDITABLE,
                     'callback' => [$this, 'update'],
 //                    'permission_callback' => [$this, 'authorize_request'],
-                    'args' => $this->get_endpoint_args_for_item_schema(WP_REST_Server::EDITABLE)
+//                    'args' => $this->get_endpoint_args_for_item_schema(\WP_REST_Server::EDITABLE)
                 ],
                 [
-                    'methods' => WP_REST_Server::DELETABLE,
+                    'methods' => \WP_REST_Server::DELETABLE,
                     'callback' => [$this, 'destroy'],
 //                    'permission_callback' => [$this, 'authorize_request'],
                 ],
@@ -91,10 +92,10 @@ class BookController extends WP_REST_Controller
     }
 
     /**
-     * @param WP_REST_Request $request
-     * @return WP_Error|WP_HTTP_Response|WP_REST_Response
+     * @param \WP_REST_Request $request
+     * @return \WP_Error|\WP_HTTP_Response|\WP_REST_Response
      */
-    public function index(WP_REST_Request $request): WP_Error|WP_REST_Response|WP_HTTP_Response
+    public function index(\WP_REST_Request $request): \WP_Error|\WP_REST_Response|\WP_HTTP_Response
     {
         do_action('mi_plugin_track', __FUNCTION__, $request->get_params());
 
@@ -103,30 +104,28 @@ class BookController extends WP_REST_Controller
             'posts_per_page' => -1,
         ];
 
-        $query = new WP_Query($args);
+        $query = new \WP_Query($args);
 
         $data = [];
 
         if ($query->have_posts()) {
-            while ($query->have_posts()) {
-                $query->the_post();
+            foreach ($query->posts as $post) {
                 $data[] = [
-                    'id' => get_the_ID(),
-                    'title' => get_the_title(),
-                    'content' => get_the_content(),
+                    'id' => $post->ID,
+                    'title' => $post->post_title,
+                    'content' => $post->post_content,
                 ];
             }
-            wp_reset_postdata();
         }
 
         return rest_ensure_response($data); # Que hace esto?
     }
 
     /**
-     * @param WP_REST_Request $request
-     * @return WP_Error|WP_HTTP_Response|WP_REST_Response
+     * @param \WP_REST_Request $request
+     * @return \WP_Error|\WP_HTTP_Response|\WP_REST_Response
      */
-    public function show(WP_REST_Request $request): WP_Error|WP_REST_Response|WP_HTTP_Response
+    public function show(\WP_REST_Request $request): \WP_Error|\WP_REST_Response|\WP_HTTP_Response
     {
         do_action('mi_plugin_track', __FUNCTION__, $request->get_params());
 
@@ -136,10 +135,10 @@ class BookController extends WP_REST_Controller
     }
 
     /**
-     * @param WP_REST_Request $request
+     * @param \WP_REST_Request $request
      * @return array
      */
-    public function store(WP_REST_Request $request): array
+    public function store(\WP_REST_Request $request): array
     {
         do_action('mi_plugin_track', __FUNCTION__, $request->get_params());
 
@@ -158,14 +157,13 @@ class BookController extends WP_REST_Controller
         $newPost = wp_insert_post($newPost);
 
         return rest_ensure_response($newPost);
-
     }
 
     /**
-     * @param WP_REST_Request $request
-     * @return WP_Error|WP_HTTP_Response|WP_REST_Response
+     * @param \WP_REST_Request $request
+     * @return \WP_Error|\WP_HTTP_Response|\WP_REST_Response
      */
-    public function update(WP_REST_Request $request): WP_Error|WP_REST_Response|WP_HTTP_Response
+    public function update(\WP_REST_Request $request): \WP_Error|\WP_REST_Response|\WP_HTTP_Response
     {
         do_action('mi_plugin_track', __FUNCTION__, $request->get_params());
 
@@ -188,19 +186,19 @@ class BookController extends WP_REST_Controller
     }
 
     /**
-     * @param WP_REST_Request $request
-     * @return WP_Error|WP_HTTP_Response|WP_REST_Response
+     * @param \WP_REST_Request $request
+     * @return \WP_Error|\WP_HTTP_Response|\WP_REST_Response
      */
-    public function destroy(WP_REST_Request $request): WP_Error|WP_REST_Response|WP_HTTP_Response
+    public function destroy(\WP_REST_Request $request): \WP_Error|\WP_REST_Response|\WP_HTTP_Response
     {
         do_action('mi_plugin_track', self::class, __FUNCTION__, $request->get_params());
 
         $id = $request->get_param('id'); // Obtén el parámetro 'id' de la URL
 
         if ($id && wp_delete_post($id, true)) {
-            return new WP_REST_Response(['message' => 'Post eliminado con éxito'], 200);
+            return new \WP_REST_Response(['message' => 'Post eliminado con éxito'], 200);
         } else {
-            return new WP_Error('post_not_found', 'No se pudo encontrar el post o hubo un error al eliminarlo.', ['status' => 404]);
+            return new \WP_Error('post_not_found', 'No se pudo encontrar el post o hubo un error al eliminarlo.', ['status' => 404]);
         }
     }
 }

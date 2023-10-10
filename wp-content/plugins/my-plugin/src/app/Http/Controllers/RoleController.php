@@ -1,4 +1,6 @@
 <?php
+
+namespace Uniqoders\MyPlugin\Http\Controllers;
 /**
  * REST API: RoleController class
  *
@@ -14,7 +16,7 @@
  *
  * @see WP_REST_Controller
  */
-class RoleController extends WP_REST_Controller
+class RoleController
 {
 
     /**
@@ -42,19 +44,19 @@ class RoleController extends WP_REST_Controller
             '/' . $this->rest_base,
             [
                 [
-                    'methods' => WP_REST_Server::READABLE,
+                    'methods' => \WP_REST_Server::READABLE,
                     'callback' => [$this, 'index'],
-                    'args' => $this->get_collection_params(),
+//                    'args' => $this->get_collection_params(),
                 ],
             ]
         );
     }
 
     /**
-     * @param WP_REST_Request $request
-     * @return WP_Error|WP_HTTP_Response|WP_REST_Response
+     * @param \WP_REST_Request $request
+     * @return \WP_Error|\WP_HTTP_Response|\WP_REST_Response
      */
-    function index(WP_REST_Request $request): WP_Error|WP_REST_Response|WP_HTTP_Response
+    function index(\WP_REST_Request $request): \WP_Error|\WP_REST_Response|\WP_HTTP_Response
     {
         do_action('mi_plugin_track', __FUNCTION__, $request->get_params());
 

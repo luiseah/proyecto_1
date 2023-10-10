@@ -1,0 +1,33 @@
+{
+    "name": "lalvarez/my-plugin",
+    "type": "wordpres-plugin",
+    "require": {
+        "php": "^7.4|^8.0"
+    },
+    "authors": [
+        {
+            "name": "Luis Eduardo Alvarez Henao",
+            "email": "lalvarez@uniqoders.com"
+        }
+    ],
+    "require-dev": {
+        "sniccowp/php-scoper-wordpress-excludes": "^6.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Uniqoders\\MyPlugin\\": "src/app/"
+        }
+    },
+    "config": {
+        "platform-check": false,
+        "platform": {
+            "php": "8.1"
+        }
+    },
+    "scripts": {
+        "php-scoper": [
+            "php-scoper add-prefix --force",
+            "@composer dump-autoload --working-dir ./build --no-dev --classmap-authoritative"
+        ]
+    }
+}
