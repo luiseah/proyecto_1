@@ -17,29 +17,27 @@
 /**
  * Include the autoloader
  */
-//add_action( 'plugins_loaded', function () {
-    if ( file_exists(__DIR__ . '/vendor/autoload.php' ) ) {
-        include __DIR__ . '/vendor/autoload.php';
-    }
-//}, 1 );
+if (file_exists(__DIR__ . '/vendor/autoload.php')) {
+    include __DIR__ . '/vendor/autoload.php';
+}
 
-require_once __DIR__ . '/src/routes/api.php';
+require_once __DIR__ . '/routing.php';
 
 //SHORTCODES
 
 
-require_once plugin_dir_path(__FILE__).'public/shortcode/my-first-shortcode.php';
+require_once plugin_dir_path(__FILE__) . 'public/shortcode/my-first-shortcode.php';
 
 //ADMIN MENU
-require_once plugin_dir_path(__FILE__).'admin/sidebar/my-custom-menu.php';
+require_once plugin_dir_path(__FILE__) . 'admin/sidebar/my-custom-menu.php';
 
 //CUSTOM POST TYPE
-require_once plugin_dir_path(__FILE__).'admin/CustomPost/books.php';
+require_once plugin_dir_path(__FILE__) . 'admin/CustomPost/books.php';
 
 //Migration
-require_once plugin_dir_path(__FILE__).'migration.php';
+require_once plugin_dir_path(__FILE__) . 'migration.php';
 
-require_once plugin_dir_path(__FILE__).'tracker.php';
+require_once plugin_dir_path(__FILE__) . 'tracker.php';
 require_once plugin_dir_path(__FILE__).'functions.php';
 //require_once plugin_dir_path(__FILE__).'src/app/Routing/Route.php';
 

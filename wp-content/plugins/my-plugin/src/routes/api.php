@@ -1,22 +1,26 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use Uniqoders\MyPlugin\Http\Controllers\BookController;
 use Uniqoders\MyPlugin\Http\Controllers\RoleController;
 use Uniqoders\MyPlugin\Routing\RequestInterface;
-use Uniqoders\MyPlugin\Routing\Route;
+//use Uniqoders\MyPlugin\Routing\Route;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Routing\Router;
 
 
-Route::get('site/{site}/', function (RequestInterface $request) {
 
-    wp_send_json([
-        'parameter' => $request->parameters(),
-        'uri' => $request->pathVariables(),
-        'headers' => $request->headers(),
-    ]);
-});
+//Route::get('site/{site}/', function (RequestInterface $request) {
+//
+//    wp_send_json([
+//        'parameter' => $request->parameters(),
+//        'uri' => $request->pathVariables(),
+//        'headers' => $request->headers(),
+//    ]);
+//});
 
-Route::get('roles', [RoleController::class, 'index']);
-Route::get('books', [BookController::class, 'index']);
+//Route::get('roles', [RoleController::class, 'index']);
+//Route::get('books', [BookController::class, 'index']);
 
 
 

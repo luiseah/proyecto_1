@@ -4,7 +4,10 @@
     "require": {
         "php": "^7.4|^8.0",
         "illuminate/container": "^10.28",
-        "illuminate/support": "^10.28"
+        "illuminate/support": "^10.28",
+        "illuminate/events": "^10.28",
+        "illuminate/routing": "^10.28",
+        "illuminate/config": "^10.28"
     },
     "authors": [
         {

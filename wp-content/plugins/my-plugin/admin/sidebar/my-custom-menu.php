@@ -3,8 +3,8 @@
 function addMenu(){
 
     add_menu_page(
-        'My Plugissss',
-        'My Pluginsss',
+        'Mi Menu de conexión',
+        'Conexión API',
         'manage_options',
         'my-plugin',
         'my_plugin_menu_page',
@@ -14,9 +14,6 @@ function addMenu(){
 }
 
 function my_plugin_menu_page(){
-//    echo "<h1>My custom Plugin #1</h1>";
-//    echo "<h1>My custom Plugin #1</h1>";
-
     $archivo_contenido =  __DIR__ . '/page.html';
 
     echo file_exists($archivo_contenido)

@@ -9,11 +9,3 @@ function plugin(){
     }
     return $plugin;
 }
-
-/**
- * @param $data
- * @return void
- */
-function response($data){
-    die(json_encode($data));
-}
