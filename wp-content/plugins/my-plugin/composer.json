@@ -2,7 +2,9 @@
     "name": "lalvarez/my-plugin",
     "type": "wordpres-plugin",
     "require": {
-        "php": "^7.4|^8.0"
+        "php": "^7.4|^8.0",
+        "illuminate/container": "^10.28",
+        "illuminate/support": "^10.28"
     },
     "authors": [
         {

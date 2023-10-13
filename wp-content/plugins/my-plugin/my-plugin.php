@@ -9,19 +9,20 @@
  * Domain Path:       /languages
  */
 
-//API REST
-
 //API REST USERS
-//require_once plugin_dir_path(__FILE__) . 'routes.php';
+/**
+ * Include the autoloader
+ */
 
 /**
  * Include the autoloader
  */
-add_action('plugins_loaded', function () {
-    if (file_exists(__DIR__ . '/vendor/autoload.php')) {
+//add_action( 'plugins_loaded', function () {
+    if ( file_exists(__DIR__ . '/vendor/autoload.php' ) ) {
         include __DIR__ . '/vendor/autoload.php';
     }
-});
+//}, 1 );
+
 require_once __DIR__ . '/src/routes/api.php';
 
 //SHORTCODES
@@ -39,4 +40,6 @@ require_once plugin_dir_path(__FILE__).'admin/CustomPost/books.php';
 require_once plugin_dir_path(__FILE__).'migration.php';
 
 require_once plugin_dir_path(__FILE__).'tracker.php';
+require_once plugin_dir_path(__FILE__).'functions.php';
+//require_once plugin_dir_path(__FILE__).'src/app/Routing/Route.php';
 

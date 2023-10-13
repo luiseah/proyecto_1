@@ -18,7 +18,6 @@ namespace Uniqoders\MyPlugin\Http\Controllers;
  */
 class RoleController
 {
-
     /**
      * Constructor.
      *
@@ -51,17 +50,29 @@ class RoleController
             ]
         );
     }
-
+//
+//    /**
+//     * @param \WP_REST_Request $request
+//     * @return \WP_Error|\WP_HTTP_Response|\WP_REST_Response
+//     */
+//    function index(\WP_REST_Request $request): \WP_Error|\WP_REST_Response|\WP_HTTP_Response
+//    {
+//        do_action('mi_plugin_track', __FUNCTION__, $request->get_params());
+//
+//        $roles = wp_roles()->get_names();
+//
+//        return rest_ensure_response(array_keys($roles));
+//    }
+//
     /**
      * @param \WP_REST_Request $request
-     * @return \WP_Error|\WP_HTTP_Response|\WP_REST_Response
      */
-    function index(\WP_REST_Request $request): \WP_Error|\WP_REST_Response|\WP_HTTP_Response
+    public function index( $request)
     {
-        do_action('mi_plugin_track', __FUNCTION__, $request->get_params());
+//        do_action('mi_plugin_track', __FUNCTION__, $request->get_params());
 
         $roles = wp_roles()->get_names();
 
-        return rest_ensure_response(array_keys($roles));
+        wp_send_json(array_keys($roles));
     }
 }

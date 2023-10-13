@@ -1,6 +1,8 @@
 <?php
 
 namespace Uniqoders\MyPlugin\Http\Controllers;
+use Uniqoders\MyPlugin\Routing\RequestInterface;
+
 /**
  * REST API: BookController class
  *
@@ -92,12 +94,10 @@ class BookController
     }
 
     /**
-     * @param \WP_REST_Request $request
-     * @return \WP_Error|\WP_HTTP_Response|\WP_REST_Response
      */
-    public function index(\WP_REST_Request $request): \WP_Error|\WP_REST_Response|\WP_HTTP_Response
+    public function index(RequestInterface $request)
     {
-        do_action('mi_plugin_track', __FUNCTION__, $request->get_params());
+        do_action('mi_plugin_track', __FUNCTION__, $request->parameters());
 
         $args = [
             'post_type' => 'book_type',
@@ -118,7 +118,7 @@ class BookController
             }
         }
 
-        return rest_ensure_response($data); # Que hace esto?
+        wp_send_json($data);
     }
 
     /**
@@ -138,7 +138,7 @@ class BookController
      * @param \WP_REST_Request $request
      * @return array
      */
-    public function store(\WP_REST_Request $request): array
+    public function store(\WP_REST_Request $request): \WP_Error|\WP_REST_Response|\WP_HTTP_Response
     {
         do_action('mi_plugin_track', __FUNCTION__, $request->get_params());
 

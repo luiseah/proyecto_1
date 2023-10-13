@@ -1,0 +1,51 @@
+<div class="text" style="max-width: 800px">
+    <h1>Test - Gestor de conexión</h1>
+
+
+
+
+
+    <form method="post">
+        <input type="hidden" name="_wpnonce" value="14990dbbf1"><input type="hidden" name="_wp_http_referer" value="/wp-admin/tools.php?page=modular-connector">
+
+        <h3>Conecta tu sitio a Modular</h3>
+
+        <p class="description">
+            Estas claves nos permitirán autenticar solicitudes de API de manera segura, sin proporcionar contraseñas reales. Las claves se pueden anular fácilmente.
+        </p>
+
+        <table class="form-table" role="presentation">
+            <tbody>
+            <tr>
+                <th scope="row">
+                    <label for="client-id">Clave pública</label>
+                </th>
+
+                <td>
+                    <input type="text" name="client_id" value="993c6c25-f83d-4a8e-883e-929b4e4132e6" class="regular-text ltr">
+                </td>
+            </tr>
+
+            <tr>
+                <th scope="row">
+                    <label for="client-secret">Clave secreta</label>
+                </th>
+
+                <td>
+                    <input type="password" name="client_secret" class="regular-text ltr" placeholder="******************">
+
+                    <p class="description" id="timezone-description">
+                        Trata tu clave secreta como si fuera una contraseña. Asegúrate de que no está en ningún sistema de control de versiones que puedas estar usando.
+                    </p>
+                    <div data-lastpass-icon-root="true" style="position: relative !important; height: 0px !important; width: 0px !important; float: left !important;"></div></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="submit">
+            <button type="submit" id="connect" class="button button-primary">
+                Actualizar
+            </button>
+        </p>
+    </form>
+</div>
