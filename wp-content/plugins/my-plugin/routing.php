@@ -18,7 +18,6 @@ use Illuminate\Routing\Redirector;
 use Illuminate\Routing\Router;
 use Illuminate\Routing\UrlGenerator;
 use Uniqoders\MyPlugin\Http\Controllers\RoleController;
-use Uniqoders\MyPlugin\Plugin;
 
 $uri = ltrim($_SERVER["REQUEST_URI"], '/');
 $pUrl = parse_url($uri);
@@ -45,8 +44,8 @@ if (function_exists('add_action') && str_starts_with($pUrl['path'], 'api/')) {
 
         // Load the routes
 
-        $router->name('roles')
-            ->get('api/roles',[RoleController::class, 'index']);
+        $router->get('api/roles',[RoleController::class, 'index'])
+            ->name('roles');
 
         $router->any('{any}', function () {
             return 'four oh four';
@@ -59,7 +58,6 @@ if (function_exists('add_action') && str_starts_with($pUrl['path'], 'api/')) {
         // return $redirect->home();
         // return $redirect->back();
 //         return $redirect->to('/');
-//        wp_send_json($request->all());
         // Dispatch the request through the router
         $response = $router->dispatch($request);
 

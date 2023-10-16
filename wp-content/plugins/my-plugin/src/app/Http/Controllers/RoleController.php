@@ -1,6 +1,8 @@
 <?php
 
 namespace Uniqoders\MyPlugin\Http\Controllers;
+
+
 /**
  * REST API: RoleController class
  *
@@ -65,11 +67,10 @@ class RoleController
 //    }
 //
     /**
-     * @param \WP_REST_Request $request
      */
-    public function index( $request)
+    public function index(\Uniqoders\MyPlugin\Routing\Request $request)
     {
-//        do_action('mi_plugin_track', __FUNCTION__, $request->get_params());
+        do_action('mi_plugin_track', __FUNCTION__, $request->parameters());
 
         $roles = wp_roles()->get_names();
 
